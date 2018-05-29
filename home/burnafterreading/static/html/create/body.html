@@ -1,0 +1,271 @@
+    <div id="create-block" style="display: block;">
+        <div>
+            <span style="font-size: large; font-weight: normal;">
+                Paste a message, password or private link below.
+            </span>
+        </div>
+        <br>
+        <div>
+            <textarea id="secret-message" placeholder="Secret content goes here..." autofocus  autocomplete="off"></textarea>
+        </div>
+        <br>
+        <div>
+            <button style="background-color: #4CAF50;" type="button" onclick=create();>
+                 Encrypt a secret message*
+            </button>
+        </div>
+        <div id="create-error-block" style="display: none;">
+            <span style="font-size: normal; color: red;">Error. Encrypted message could not be sent to the server. Please try again.</span>
+        </div>
+        <div id="encrypt-error-block" style="display: none;">
+            <span style="font-size: normal; color: red;">Error. Message could not be encrypted. Please try again.</span>
+        </div>
+        <div style="font-size: small; opacity: .7;">
+            <br>* A secret message only view once and then disappears forever.
+        </div>
+        <br>
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>
+                                <span style="font-size: medium; font-weight: bold;">
+                                    F.A.Q.
+                                </span>
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    Why would I use this?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                When you send people passwords or private links via email or chat, there are copies of that information stored in many places. If you use a one-time link instead, the information persists for a single viewing which means it can't be read by someone else later. This allows you to send sensitive information in a safe way knowing it's seen by one person only. Think of it like a self-destructing message.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    How long do you keep non-viewed encrypted secret message?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                We keep encrypted secret message for up to 24 hours. After that they are deleted automatically forever.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    What is the maximum message size?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                The maximum size is 1MB.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    Can I retrieve a encrypted secret message that has already been read?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                Nope. We display it once and then delete it. After that it's gone forever.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    Why should I trust you?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                We can't do anything with your information even if we wanted to. All data before being sent to our server is encrypted in your browser using the Web Crypto API. We don't store the encryption key so we can never know the secret message is because we can't decrypt it. To perform authenticated encryption is used AES in Galois/Counter Mode, as described in <a rel="noreferrer nofollow noopener" href="https://csrc.nist.gov/publications/detail/sp/800-38d/final">[NIST SP 800-38D]</a>,with a random 96-bit initialization vector and random 256-bit encryption key. Beside all that, the code is <a rel="noreferrer nofollow noopener" href="https://github.com/webencryption/burnafterreading">opensource</a> so you can review the code and/or run your own instance.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="display: none;" id="share-block">
+        <table align="center">
+            <tbody>
+                <tr onclick="copy('shared-link')">
+                    <td style="white-space: nowrap;">
+                        <span style="font-size: large;">
+                            Shared link*:
+                        </span>
+                        <br>
+                        <div style="width: 100%" class="tooltip">
+                            <span id="shared-link-tooltip" class="tooltiptext">Click to copy</span>
+                            <input id="shared-link" style="border: 1px solid green;" readonly  autocomplete="off">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size: small; opacity: .7;">
+                            <br>* Expires in 24 hours. <span id="expire-time" style="color: gray;"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table align="center">
+            <tbody>
+                <tr onclick="copy('decryption-key')">
+                    <td style="white-space: nowrap;">
+                        <span style="font-size: large;">
+                            Decryption key*:
+                        </span>
+                        <br>
+                        <div style="width: 100%" class="tooltip">
+                            <span id="decryption-key-tooltip" class="tooltiptext">Click to copy</span>
+                            <input id="decryption-key" style="border: 1px solid orange;" readonly  autocomplete="off">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size: small; opacity: .7;">
+                            <br>* We recommend sharing a shared link and decryption key via different channels.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <span style="font-size: large; font-weight: normal;">
+                or
+            </span>
+        </div>
+        <br>
+        <table align="center">
+            <tbody>
+                <tr onclick="copy('quick-link')">
+                    <td style="white-space: nowrap;">
+                        <span style="font-size: large;">
+                            Quick link*:
+                        </span>
+                        <br>
+                        <div style="width: 100%" class="tooltip">
+                            <span id="quick-link-tooltip" class="tooltiptext">Click to copy</span>
+                            <input id="quick-link" style="border: 1px solid red;" readonly  autocomplete="off">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size: small; opacity: .7;">
+                            <br>* We recommend sharing this link only if you absolutely trust the communication channel through which it is transmitted.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <button style="background-color: orange" type="button" onclick=burn('share-block');>
+                <img style="width: 14px; height: 14px;" src="/static/img/icon-fire.png"></img>
+                Burn this encrypted secret message*
+            </button>
+        </div>
+        <div id="burn-error-block" style="display: none;">
+            <p><span style="font-size: normal; color: red;">Error. The encrypted secret message is not burned. Please try again.
+            </span></p>
+        </div>
+        <div style="font-size: small; opacity: .7;">
+            <br>* Burning a encrypted secret message will delete it before it has been read.
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                    Encrypt another secret message
+                </button>
+            </a>
+        </div>
+        <br>
+        <br>
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>
+                                <span style="font-size: medium; font-weight: bold;">
+                                    F.A.Q.
+                                </span>
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    What if I forgot to copy the shared link or decryption key?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                You need to create a new shared link. We can't restore it for you.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    How long will the encrypted secret message be available?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                The encrypted secret message will be available for 24 hours or until first attempt it's decrypt.
+                                </span>
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    What happens when I burn a encrypted secret message?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                Burning a encrypted secret message will delete it before it has been read. If you send someone a shared link and burn the encrypted secret message before they view it, they will not be able to read it.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="not-exist-block" style="display: none;">
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span style="font-size: normal; font-weight: normal;">
+                                This encrypted secret message does not exist. It is likely that it never existed. Maybe someone read it before you. We do not know this.
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                    Encrypt another secret message
+                </button>
+            </a>
+        </div>
+    </div>
+    <div id="success-burn-block" style="display: none;">
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span style="font-size: normal; font-weight: normal;">
+                                This encrypted secret message is successfully burned.
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                    Encrypt another secret message
+                </button>
+            </a>
+        </div>
+    </div>

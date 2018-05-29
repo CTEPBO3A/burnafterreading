@@ -1,0 +1,5 @@
+Host: https://burnafterreading.pw
+User-agent: *
+Allow: /$
+Allow: /about
+Disallow: /*

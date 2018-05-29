@@ -1,0 +1,203 @@
+    <div id="download-block" style="display: block;">
+        <div id="decryption-key-block" style="display: none;">
+            <div>
+                <span style="font-size: large; font-weight: normal;">
+                    Enter decryption key
+                </span>
+            </div>
+            <br>
+            <div>
+                <table align="center">
+                    <tbody>
+                        <tr>
+                            <td style="white-space: nowrap;">
+                                <input id="decryption-key" style="border: 1px solid orange;" placeholder="Decryption key goes here..." autocomplete="off">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="decrypt-error-block" style="display: none;">
+                <span style="font-size: normal; color: red;">Error. The message could not be decrypted. You may have entered the wrong decryption key. Please try again.</span>
+            </div>
+            <br>
+            <div>
+                <span style="font-size: large; font-weight: normal;">
+                    and click to continue
+                </span>
+            </div>
+        </div>
+        <div id="quick-link-header">
+            <span style="font-size: large; font-weight: normal;">
+                Click to continue
+            </span>
+        </div>
+        <br>
+        <script>
+            if (window.location.hash.split( '#' )[1] && window.location.hash.split( '#' )[1].length == 64) {
+                document.getElementById("decryption-key").value = window.location.hash.split( '#' )[1];
+            }
+            else {
+                document.getElementById('decryption-key-block').style.display = 'block';
+                document.getElementById('quick-link-header').style.display = 'none';
+            }
+        </script>
+        <div>
+            <button style="background-color: #4CAF50" type="button" onclick=read();>
+                 Decrypt and view secret message*
+            </button>
+        </div>
+        <div id="download-error-block" style="display: none;">
+            <span style="font-size: normal; color: red;">Error. The encrypted secret message is not load from server. Please try again.</span>
+        </div>
+        <div style="font-size: small; opacity: .7;">
+            <br>* Careful, we will only download and view it once.
+        </div>
+        <br>
+        <div>
+            <span style="font-size: large; font-weight: normal;">
+                or
+            </span>
+        </div>
+        <br>
+        <div>
+            <button style="background-color: orange" type="button" onclick=burn('download-block');>
+                <img style="width: 14px; height: 14px;" src="/static/img/icon-fire.png"></img>
+                Burn this encrypted secret message*
+            </button>
+        </div>
+        <div id="burn-error-block" style="display: none;">
+            <span style="font-size: normal; color: red;">Error. The encrypted secret message is not burned. Please try again.</span>
+        </div>
+        <div style="font-size: small; opacity: .7;">
+            <br>* Burning a encrypted secret message will delete it before it has been read.
+        </div>
+        <br>
+        <br>
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span style="font-size: medium; font-weight: bold;">
+                                    F.A.Q.
+                            </span>
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    What if I forgot to copy the decryption key?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                You need to create a new shared link. We can't restore it for you.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    How long will the encrypted secret message be available?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                The encrypted secret message will be available for 24 hours or until first attempt it's decrypt.
+                            </p>
+                            <p>
+                                <span style="font-size: small; font-weight: bold;">
+                                    What happens when I burn a encrypted secret message?
+                                </span>
+                            </p>
+                            <p style="font-size: small;">
+                                Burning a encrypted secret message will delete it before it has been read.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="not-exist-block" style="display: none;">
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span style="font-size: normal; font-weight: normal;">
+                                This encrypted secret message does not exist. It is likely that it never existed. Maybe someone read it before you. We do not know this.
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                    Encrypt another secret message
+                </button>
+            </a>
+        </div>
+    </div>
+    <div id="success-burn-block" style="display: none;">
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span style="font-size: normal; font-weight: normal;">
+                                This encrypted secret message is successfully burned.
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                    Encrypt another secret message
+                </button>
+            </a>
+        </div>
+    </div>
+    <div id="read-block" style="display: none;">
+        <div>
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span style="font-size: large; font-weight: normal;">
+                                This secret message is for you:
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <textarea id="secret-message" readonly  autocomplete="off"></textarea>
+        </div>
+        <br>
+        <div>
+            <a rel="noreferrer nofollow noopener" href="/">
+                <button style="background-color: #4CAF50" type="button">
+                     Reply with another encrypted secret message
+                </button>
+            </a>
+        </div>
+        <br>
+        <div>
+            <span style="font-size: large; font-weight: normal;">
+                or
+            </span>
+        </div>
+        <br>
+        <div>
+            <button style="background-color: orange" type="button" onclick="save()">
+                <img style="width: 14px; height: 14px;" src="/static/img/icon-download.png"></img>
+                Save secret message to a file*
+            </button>
+        </div>
+        <div style="font-size: small; opacity: .7;">
+            <br>* We do not recommend storing a decrypted secret message in a file if the disc on your device is not encrypted or third parties can access it.
+        </div>
+    </div>
