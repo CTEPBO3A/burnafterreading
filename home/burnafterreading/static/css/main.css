@@ -34,7 +34,6 @@ button {
 
 table {
     width: 50%;
-    table-layout: fixed;
 }
 
 td {
@@ -62,33 +61,6 @@ input {
     border-radius: 4px;
     padding: 4px 4px;
     box-sizing: border-box;
-}
-
-.tooltip {
-    width: 100%;
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    width: 120px;
-    font-size: small;
-    visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 2px 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 110%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
 }
 
 @media (max-width:800px) {

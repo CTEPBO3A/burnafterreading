@@ -20,9 +20,17 @@
         <div id="encrypt-error-block" style="display: none;">
             <span style="font-size: normal; color: red;">Error. Message could not be encrypted. Please try again.</span>
         </div>
-        <div style="font-size: small; opacity: .7;">
-            <br>* A secret message only view once and then disappears forever.
-        </div>
+        <table align="center">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="font-size: small; opacity: .7;">
+                            * A secret message only view once and then disappears forever.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <br>
         <div>
             <table align="center">
@@ -86,19 +94,21 @@
                 <tr onclick="copy('shared-link')">
                     <td style="white-space: nowrap;">
                         <span style="font-size: large;">
-                            Shared link*:
+                            Shared link*:&nbsp;
                         </span>
-                        <br>
-                        <div style="width: 100%" class="tooltip">
-                            <span id="shared-link-tooltip" class="tooltiptext">Click to copy</span>
-                            <input id="shared-link" style="border: 1px solid green;" readonly  autocomplete="off">
-                        </div>
+                    </td>
+                    <td style="max-width:1px;width:100%">
+                        <input id="shared-link" style="border: 1px solid green;" readonly  autocomplete="off">
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table align="center">
+            <tbody>
                 <tr>
                     <td>
                         <div style="font-size: small; opacity: .7;">
-                            <br>* Expires in 24 hours. <span id="expire-time" style="color: gray;"></span>
+                            * Expires in 24 hours. <span id="expire-time" style="color: gray;"></span>
                         </div>
                     </td>
                 </tr>
@@ -110,19 +120,21 @@
                 <tr onclick="copy('decryption-key')">
                     <td style="white-space: nowrap;">
                         <span style="font-size: large;">
-                            Decryption key*:
+                            Decryption key*:&nbsp;
                         </span>
-                        <br>
-                        <div style="width: 100%" class="tooltip">
-                            <span id="decryption-key-tooltip" class="tooltiptext">Click to copy</span>
-                            <input id="decryption-key" style="border: 1px solid orange;" readonly  autocomplete="off">
-                        </div>
+                    </td>
+                    <td style="max-width:1px;width:100%">
+                        <input id="decryption-key" style="border: 1px solid orange;" readonly  autocomplete="off">
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table align="center">
+            <tbody>
                 <tr>
                     <td>
                         <div style="font-size: small; opacity: .7;">
-                            <br>* We recommend sharing a shared link and decryption key via different channels.
+                            * We recommend sharing a shared link and decryption key via different channels.
                         </div>
                     </td>
                 </tr>
@@ -140,19 +152,21 @@
                 <tr onclick="copy('quick-link')">
                     <td style="white-space: nowrap;">
                         <span style="font-size: large;">
-                            Quick link*:
+                            Quick link*:&nbsp;
                         </span>
-                        <br>
-                        <div style="width: 100%" class="tooltip">
-                            <span id="quick-link-tooltip" class="tooltiptext">Click to copy</span>
+                    </td>
+                    <td style="max-width:1px;width:100%">
                             <input id="quick-link" style="border: 1px solid red;" readonly  autocomplete="off">
-                        </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table align="center">
+            <tbody>
                 <tr>
                     <td>
                         <div style="font-size: small; opacity: .7;">
-                            <br>* We recommend sharing this link only if you absolutely trust the communication channel through which it is transmitted.
+                            * We recommend sharing this link only if you absolutely trust the communication channel through which it is transmitted.
                         </div>
                     </td>
                 </tr>
@@ -169,9 +183,17 @@
             <p><span style="font-size: normal; color: red;">Error. The encrypted secret message is not burned. Please try again.
             </span></p>
         </div>
-        <div style="font-size: small; opacity: .7;">
-            <br>* Burning a encrypted secret message will delete it before it has been read.
-        </div>
+        <table align="center">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="font-size: small; opacity: .7;">
+                            * Burning a encrypted secret message will delete it before it has been read.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <br>
         <div>
             <a rel="noreferrer nofollow noopener" href="/">
