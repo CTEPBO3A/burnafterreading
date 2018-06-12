@@ -1,15 +1,18 @@
-function buf2hex(buffer) {
-    return Array.prototype.map.call(buffer, function(byte) {
-        return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-    }).join('');
+function buf2base64(buffer) {
+    let binary = '';
+    for (let i = 0; i < buffer.byteLength; i++) {
+        binary += String.fromCharCode(buffer[i]);
+    }
+    return window.btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-function hex2buf(hex) {
-    array = [];
-    for (let i = 0; i < hex.length; i += 2) {
-        array.push(parseInt('0x' + hex.substr(i, 2), 16));
+function base642buf(base64) {
+    let binary = window.atob(base64.replace(/\-/g, '+').replace(/\_/g, '/'));
+    let bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
     }
-    return new Uint8Array(array);
+    return bytes.buffer;
 }
 
 async function encrypt(plaintext, password, iv) {
@@ -44,14 +47,14 @@ async function create() {
         var ciphertext = await encrypt(plaintext, password, iv);
         if (ciphertext) {
             let xhr = new XMLHttpRequest;
-            xhr.open('PUT', '/put/' + buf2hex(iv), true);
+            xhr.open('PUT', '/put/' + buf2base64(iv), true);
             xhr.onload = async function () {
                 if (xhr.readyState == 4) {
                     switch (xhr.status) {
                         case 201:
                             value('shared-link', xhr.getResponseHeader('Location'));
-                            value('decryption-key', buf2hex(password));
-                            value('quick-link', xhr.getResponseHeader('Location') + '#' + buf2hex(password));
+                            value('decryption-key', buf2base64(password));
+                            value('quick-link', xhr.getResponseHeader('Location') + '#' + buf2base64(password));
                             text('expire-time', '(' + new Date(Date.now() + 24*60*60*1000) + ')');
                             show('share-block');
                             hide('create-block');
@@ -75,9 +78,9 @@ var ciphertext = '';
 async function read() {
     if (ciphertext) {
         let password = document.getElementById('decryption-key').value
-        if (password.length == 64) {
-            password = hex2buf(password);
-            let iv = hex2buf(window.location.pathname.split( '/' )[1]);
+        if (password.length == 43) {
+            password = base642buf(password);
+            let iv = base642buf(window.location.pathname.split( '/' )[1]);
             let plaintext = await decrypt(ciphertext, password, iv);
             if (plaintext) {
                 value('secret-message', plaintext);
