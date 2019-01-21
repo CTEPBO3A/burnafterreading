@@ -1,1 +1,1 @@
-*/1 * * * * find /home/burnafterreading/ -maxdepth 1 -type f -mmin +$((60*24)) -iregex '^/home/burnafterreading/[a-zA-Z0-9]{16}$' -delete
+*/1 * * * * find /home/burnafterreading/ -maxdepth 1 -type f -mmin +$((60*24)) -iregex '^/home/burnafterreading/[a-zA-Z0-9]+$' -delete
